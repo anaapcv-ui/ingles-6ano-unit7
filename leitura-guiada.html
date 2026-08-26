@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitura Guiada — English Unit 7 · Passport Adventure (6º ano)</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+--navy:#0e1f3f;--navy2:#0a1730;--card:#15274d;--card2:#1b2f59;
+--gold:#edb84a;--gold2:#f4cf76;--teal:#31b0c6;--paper:#f5edda;
+--ink:#eef3fc;--ink2:#adbfdd;--red:#d1495b;
+--green:#2fae7a;--green-h:#26946a;--green-bg:#123a2f;--green-bd:#2c6d55;
+--raio:16px;--sombra:0 8px 26px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy2);font-family:'Nunito',sans-serif;color:var(--ink);min-height:100vh;
+background-image:radial-gradient(circle at 15% 12%,rgba(49,176,198,.10) 0,transparent 40%),radial-gradient(circle at 88% 90%,rgba(237,184,74,.10) 0,transparent 42%),radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:auto,auto,22px 22px;}
+.header{background:linear-gradient(135deg,#1f7a5c 0%,#12634a 100%);color:#fff;padding:26px 18px 22px;text-align:center;position:relative;overflow:hidden;border-bottom:6px solid #0c4a37}
+.header::after{content:'🧭 ✈️ 🗺️ 🏰 🐚 🗼 🏛️ 🌋';position:absolute;bottom:6px;left:0;right:0;font-size:15px;opacity:.28;letter-spacing:8px;white-space:nowrap;text-align:center}
+.stamp{display:inline-block;border:2px dashed rgba(255,255,255,.7);border-radius:40px;font-size:10.5px;font-weight:900;letter-spacing:2px;padding:5px 15px;margin-bottom:10px;text-transform:uppercase;transform:rotate(-3deg)}
+.header h1{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(26px,7vw,42px);text-shadow:2px 2px 0 rgba(0,0,0,.25)}
+.header p{font-size:13px;font-weight:800;opacity:.95;margin-top:3px}
+.nav{background:var(--navy);border-bottom:1px solid #24365f;display:flex;overflow-x:auto;padding:0 6px}
+.nav a{flex:1;min-width:104px;text-align:center;padding:11px 8px;font-size:12.5px;font-weight:800;color:var(--ink2);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap}
+.nav a.on{color:var(--gold2);border-bottom-color:var(--gold)}
+.nav a:hover{color:#fff}
+.save-panel{background:var(--card);border-bottom:1px solid #24365f;padding:8px 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--ink2)}
+.save-panel .info{flex:1;min-width:150px}
+.btn-sp{background:transparent;border:1.5px solid var(--teal);color:var(--teal);padding:5px 11px;border-radius:8px;font-size:11.5px;cursor:pointer;font-family:'Nunito';font-weight:800}
+.btn-sp:hover{background:var(--teal);color:#04222a}
+.btn-sp.danger{border-color:var(--red);color:var(--red)}
+.btn-sp.danger:hover{background:var(--red);color:#fff}
+.content{max-width:760px;margin:0 auto;padding:18px 15px 90px}
+.intro{background:var(--card);border:1px dashed var(--teal);border-radius:14px;padding:15px 16px;font-size:14px;line-height:1.6;color:var(--ink2);margin-bottom:18px}
+.intro b{color:var(--gold2)}
+.progress-jornada{display:flex;gap:6px;justify-content:center;margin:14px 0 22px;flex-wrap:wrap}
+.pj{width:30px;height:30px;border-radius:50%;background:var(--card2);border:2px solid #2b3f6b;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:var(--ink2)}
+.pj.done{background:var(--green);border-color:var(--green-h);color:#fff}
+.pj.now{border-color:var(--gold);color:var(--gold2);box-shadow:0 0 0 3px rgba(237,184,74,.2)}
+.bloco{background:var(--card);border:1.5px solid #2b3f6b;border-radius:var(--raio);padding:20px 18px;margin-bottom:16px;box-shadow:var(--sombra);position:relative}
+.bloco.locked{display:none}
+.bloco-cab{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.bloco-num{min-width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--gold),#d99e2f);color:#3a2a06;font-family:'Baloo 2';font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center}
+.bloco-cab h2{font-family:'Baloo 2',sans-serif;font-size:19px;color:var(--gold2);line-height:1.15}
+.txt{font-size:14.5px;line-height:1.68;color:var(--ink);margin-bottom:11px}
+.txt b{color:var(--gold2)}
+.en{color:var(--teal);font-style:italic;font-weight:800}
+.tabela{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;background:var(--navy);border-radius:10px;overflow:hidden}
+.tabela th{background:var(--card2);color:var(--gold2);padding:8px 10px;text-align:left;font-size:12.5px}
+.tabela td{padding:8px 10px;border-top:1px solid #23375f;color:var(--ink)}
+.tabela td b{color:#fff}
+.ex-box{background:var(--navy);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:10px 13px;margin:11px 0}
+.ex-box h4{font-size:12.5px;color:var(--teal);margin-bottom:7px;letter-spacing:1px;text-transform:uppercase}
+.ej{font-size:14px;line-height:1.5;margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ej:last-child{margin-bottom:0}
+.ej b{color:var(--gold2)}
+.pt-mini{color:var(--ink2);font-size:12.5px;font-style:italic}
+.btn-audio{background:var(--teal);border:none;color:#04222a;width:30px;height:30px;border-radius:9px;font-size:14px;cursor:pointer;flex-shrink:0;font-weight:900}
+.btn-audio:hover{background:var(--gold2);color:#3a2a06}
+.postit{background:#f7e08a;color:#4a3a05;border-radius:6px 14px 8px 12px;padding:11px 14px;margin:12px 0;font-size:13.5px;line-height:1.55;box-shadow:2px 3px 8px rgba(0,0,0,.25);transform:rotate(-.6deg)}
+.postit b{color:#7a5a00}
+.pergunta{margin:14px 0 0}
+.pergunta label{display:block;font-size:14px;font-weight:800;color:var(--ink);margin:12px 0 6px}
+.pergunta label .q{color:var(--teal)}
+.pergunta textarea{width:100%;background:var(--navy);border:1.5px solid #2b3f6b;border-radius:10px;padding:10px 12px;color:var(--ink);font-family:'Nunito';font-size:14px;resize:vertical;min-height:56px}
+.pergunta textarea:focus{outline:none;border-color:var(--gold)}
+.btn-conferir{margin-top:13px;background:var(--green);color:#fff;border:none;padding:11px 20px;border-radius:11px;font-family:'Nunito';font-weight:900;font-size:14px;cursor:pointer}
+.btn-conferir.off{background:#33507e;color:#8ba0c6;cursor:not-allowed}
+.btn-conferir:not(.off):hover{background:var(--green-h)}
+.modelo{display:none;margin-top:14px;background:var(--green-bg);border:1px solid var(--green-bd);border-radius:12px;padding:13px 15px}
+.modelo.show{display:block}
+.modelo h4{font-size:13px;color:#7ff0c0;margin-bottom:6px}
+.modelo p{font-size:13.5px;line-height:1.55;color:#d6f5e8;margin-bottom:6px}
+.modelo p b{color:#fff}
+.auto{margin-top:10px;padding-top:10px;border-top:1px dashed var(--green-bd)}
+.auto span{display:block;font-size:12.5px;color:#bfe8d5;margin-bottom:7px;font-weight:800}
+.auto button{background:transparent;border:1.5px solid var(--green-bd);color:#d6f5e8;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:800;cursor:pointer;margin:0 5px 5px 0;font-family:'Nunito'}
+.auto button.sel{background:var(--green);border-color:var(--green);color:#fff}
+.next-btn{display:block;width:100%;margin-top:6px;background:var(--gold);color:#3a2a06;border:none;padding:12px;border-radius:12px;font-family:'Baloo 2';font-weight:800;font-size:15px;cursor:pointer}
+.next-btn:hover{background:var(--gold2)}
+.final{background:linear-gradient(135deg,#3a1220,#5a1c2e);border:1.5px solid #7a2740;border-radius:var(--raio);padding:20px 18px;margin-top:18px;box-shadow:var(--sombra)}
+.final.locked{display:none}
+.final h2{font-family:'Baloo 2';color:#ffb3c0;font-size:20px;margin-bottom:6px}
+.final .sub{font-size:13px;color:#f0c9d1;margin-bottom:12px}
+.trap{background:rgba(0,0,0,.22);border-left:3px solid var(--red);border-radius:0 10px 10px 0;padding:11px 13px;margin-bottom:10px;font-size:13.5px;line-height:1.55}
+.trap b{color:#ffb3c0}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--card2);color:var(--ink);border:1px solid var(--gold);padding:11px 18px;border-radius:12px;font-size:13px;font-weight:800;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+.overlay{display:none;position:fixed;inset:0;background:rgba(4,10,22,.7);z-index:400;align-items:center;justify-content:center;padding:20px}
+.overlay.show{display:flex}
+.modal{background:var(--card);border:1.5px solid var(--gold);border-radius:18px;padding:24px;max-width:340px;text-align:center;box-shadow:var(--sombra)}
+.modal p{font-size:15px;margin-bottom:16px;line-height:1.5}
+.modal button{border:none;padding:10px 18px;border-radius:10px;font-family:'Nunito';font-weight:900;font-size:13.5px;cursor:pointer;margin:0 5px}
+.modal .sim{background:var(--red);color:#fff}
+.modal .nao{background:#33507e;color:#fff}
+.footer{text-align:center;font-size:12px;color:var(--ink2);padding:20px}
+.footer a{color:var(--gold2)}
+</style>
+</head>
+<body>
+<div class="header">
+  <span class="stamp">Parada 1 · Passport Adventure</span>
+  <h1>📖 Leitura Guiada</h1>
+  <p>English · Unit 7 · 6º ano · com áudio 🔊</p>
+</div>
+<nav class="nav">
+  <a class="on" href="leitura-guiada.html">📖 Leitura Guiada</a>
+  <a href="quiz.html">🎯 Quiz</a>
+  <a href="resumo.html">🗺️ Resumo</a>
+  <a href="simulado.html">📝 Simulado</a>
+  <a href="index.html">🧭 Início</a>
+</nav>
+<div class="save-panel">
+  <span class="info" id="saveInfo">💾 Seu progresso é salvo automaticamente.</span>
+  <button class="btn-sp" onclick="exportar()">📥 Exportar</button>
+  <button class="btn-sp" onclick="document.getElementById('impF').click()">📤 Importar</button>
+  <button class="btn-sp danger" onclick="pedirZerar()">🗑️ Zerar</button>
+  <input type="file" id="impF" accept=".json" style="display:none" onchange="importar(event)">
+</div>
+
+<div class="content">
+  <div class="intro">🧭 Bem-vindo(a) à viagem da <b>Unit 7</b>! Leia cada <b>parada</b> com calma, ouça os exemplos em inglês no botão <b>🔊</b> e responda as perguntas com suas palavras. Depois clique em <b>Conferir</b> para ver a resposta modelo. Cada parada só abre a próxima quando você responde. Let's go! ✈️</div>
+  <div class="progress-jornada" id="jornada"></div>
+  <div id="blocos"></div>
+
+  <div class="final locked" id="finalBox">
+    <h2>⚠️ Cuidado com estas pegadinhas!</h2>
+    <p class="sub">Erros que o professor adora cobrar na prova. Leia devagar:</p>
+    <div class="trap"><b>1.</b> Adjetivo <b>curto</b> (1 sílaba) no superlativo NÃO usa <span class="en">most</span>. É <span class="en">the biggest</span>, nunca <span class="en">the most big</span>.</div>
+    <div class="trap"><b>2.</b> Adjetivo <b>longo</b> (2+ sílabas) usa <span class="en">the most</span>: <span class="en">the most famous</span>, e não <span class="en">the famousest</span>.</div>
+    <div class="trap"><b>3.</b> <span class="en">too</span> quer dizer "demais" (coisa ruim/excessiva). <span class="en">enough</span> quer dizer "o suficiente". Não confunda: <span class="en">too small</span> = pequeno demais; <span class="en">small enough</span> = pequeno o suficiente.</div>
+    <div class="trap"><b>4.</b> <span class="en">enough</span> vem <b>depois</b> do adjetivo: <span class="en">big enough</span> ✅ (não <span class="en">enough big</span> ❌).</div>
+    <div class="trap"><b>5.</b> Advérbios irregulares NÃO ganham -ly: <span class="en">fast → fast</span>, <span class="en">hard → hard</span>, <span class="en">good → well</span>. Cuidado: <span class="en">goodly</span> e <span class="en">fastly</span> não existem!</div>
+    <div class="trap"><b>6.</b> Advérbio ≠ adjetivo. Adjetivo descreve a <b>coisa</b> (a fast car), advérbio descreve <b>como</b> se faz a ação (he drives fast / she sings well).</div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <p>🗑️ Zerar todo o progresso desta leitura? (para outra criança usar)</p>
+    <button class="sim" onclick="zerar()">Sim, zerar</button>
+    <button class="nao" onclick="fecharModal()">Cancelar</button>
+  </div>
+</div>
+
+<div class="footer">🧭 Passport Adventure · Leitura Guiada · Inglês Unit 7 · 6º ano<br><a href="index.html">Voltar ao início</a></div>
+
+<script>
+// ---------- ÁUDIO ----------
+function speak(txt){
+  if(!('speechSynthesis' in window)){toast('Áudio indisponível. Tente no Chrome.');return;}
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(txt);u.lang='en-US';u.rate=0.82;
+  const vs=window.speechSynthesis.getVoices();const en=vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('en'));
+  if(en)u.voice=en;window.speechSynthesis.speak(u);
+}
+if('speechSynthesis' in window){window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+
+// ---------- CONTEÚDO ----------
+const BLOCOS=[
+{
+titulo:"Superlativos: o quê e quando",
+html:`<p class="txt">O <b>superlativo</b> serve para dizer que algo é o <b>MAIS</b> de tudo dentro de um grupo: o maior, o mais bonito, o mais famoso. Usamos quando comparamos <b>mais de duas</b> coisas, pessoas ou lugares, ou comparamos alguém/algo com o <b>grupo inteiro</b>.</p>
+<p class="txt">A dica que nunca falha: o superlativo quase sempre começa com <span class="en">the</span> (o/a). Se a frase fala de "o melhor do mundo", "a maior da turma", "o mais legal de todos" — é superlativo.</p>
+<div class="ex-box"><h4>🔊 Ouça os exemplos</h4>
+<div class="ej"><span>It is <b>the biggest</b> pyramid in the world.</span><span class="pt-mini">→ É a maior pirâmide do mundo.</span><button class="btn-audio" onclick="speak('It is the biggest pyramid in the world')">🔊</button></div>
+<div class="ej"><span>The Taj Mahal is <b>the most famous</b> monument in India.</span><span class="pt-mini">→ o monumento mais famoso da Índia.</span><button class="btn-audio" onclick="speak('The Taj Mahal is the most famous monument in India')">🔊</button></div></div>
+<div class="postit">📌 <b>Truque:</b> comparou 2 coisas? é comparativo (bigger than). Comparou com TODO um grupo? é superlativo (the biggest).</div>`,
+perguntas:[
+{q:"Com suas palavras, quando usamos o superlativo?",modelo:"Usamos o superlativo para dizer que algo é o MAIS de tudo em um grupo (o maior, o mais bonito), quando comparamos mais de duas coisas ou com o grupo inteiro. Ele costuma vir com <b>the</b>."},
+{q:"Traduza para o português: <span class=\"en\">It is the biggest pyramid in the world.</span>",modelo:"<b>É a maior pirâmide do mundo.</b> (biggest = a maior; superlativo de big)."}
+]
+},
+{
+titulo:"Como montar o superlativo",
+html:`<p class="txt">A forma do superlativo muda de acordo com o tamanho do adjetivo (quantas sílabas ele tem). Olhe a tabela e decore os quatro casos:</p>
+<table class="tabela"><tr><th>Tipo de adjetivo</th><th>Adjetivo</th><th>Superlativo</th></tr>
+<tr><td>1 sílaba</td><td>old / large</td><td><b>the oldest</b> / the largest</td></tr>
+<tr><td>1 sílaba (vogal+consoante)</td><td>big</td><td><b>the biggest</b> (dobra o g)</td></tr>
+<tr><td>2 sílabas terminando em -y</td><td>lovely</td><td><b>the loveliest</b> (y vira i)</td></tr>
+<tr><td>2 ou mais sílabas</td><td>famous</td><td><b>the most famous</b></td></tr>
+<tr><td>irregulares</td><td>good / bad</td><td><b>the best</b> / the worst</td></tr></table>
+<p class="txt">Repare: adjetivo <b>curto</b> ganha <b>-est</b> no fim (old → the oldest). Adjetivo <b>longo</b> (2+ sílabas) usa <span class="en">the most</span> na frente (famous → the most famous). E dois valentes fogem da regra: <span class="en">good → the best</span> e <span class="en">bad → the worst</span>.</p>
+<div class="ex-box"><h4>🔊 Ouça os exemplos</h4>
+<div class="ej"><span>This is <b>the oldest</b> castle in the town.</span><button class="btn-audio" onclick="speak('This is the oldest castle in the town')">🔊</button></div>
+<div class="ej"><span>Paris is <b>the most beautiful</b> city.</span><button class="btn-audio" onclick="speak('Paris is the most beautiful city')">🔊</button></div>
+<div class="ej"><span>History is <b>the best</b> subject!</span><button class="btn-audio" onclick="speak('History is the best subject')">🔊</button></div></div>`,
+perguntas:[
+{q:"Escreva o superlativo de <span class=\"en\">big</span> e de <span class=\"en\">famous</span>.",modelo:"<b>big → the biggest</b> (curto, dobra o g). <b>famous → the most famous</b> (longo, usa the most)."},
+{q:"Qual é o superlativo irregular de <span class=\"en\">good</span> e de <span class=\"en\">bad</span>?",modelo:"<b>good → the best</b> (o melhor) e <b>bad → the worst</b> (o pior). São irregulares, é só decorar."}
+]
+},
+{
+titulo:"too, enough e not enough",
+html:`<p class="txt">Estas três palavrinhas falam sobre <b>quantidade certa, demais ou de menos</b>:</p>
+<p class="txt">➡️ <span class="en">too</span> + adjetivo = <b>demais</b> (é excessivo, geralmente ruim). Ex.: <span class="en">too late</span> = tarde demais.</p>
+<p class="txt">➡️ adjetivo + <span class="en">enough</span> = <b>o suficiente</b> (é bastante). Repare que o <span class="en">enough</span> vem <b>depois</b> do adjetivo. Ex.: <span class="en">big enough</span> = grande o suficiente.</p>
+<p class="txt">➡️ <span class="en">not</span> + adjetivo + <span class="en">enough</span> = <b>não é o suficiente</b> (falta). Ex.: <span class="en">not big enough</span> = não é grande o suficiente.</p>
+<p class="txt">Também existe <span class="en">have enough</span> = ter o suficiente. Ex.: <span class="en">I don't have enough money</span> = eu não tenho dinheiro suficiente.</p>
+<div class="ex-box"><h4>🔊 Ouça os exemplos</h4>
+<div class="ej"><span>We were <b>too</b> late. It was closed.</span><button class="btn-audio" onclick="speak('We were too late. It was closed.')">🔊</button></div>
+<div class="ej"><span>My tent was big <b>enough</b> for two people.</span><button class="btn-audio" onclick="speak('My tent was big enough for two people')">🔊</button></div>
+<div class="ej"><span>My tent wasn't big <b>enough</b> for eight people.</span><button class="btn-audio" onclick="speak(&quot;My tent wasn't big enough for eight people&quot;)">🔊</button></div>
+<div class="ej"><span>I don't <b>have enough</b> money to buy a car.</span><button class="btn-audio" onclick="speak(&quot;I don't have enough money to buy a car&quot;)">🔊</button></div></div>
+<div class="postit">📌 <b>Ordem certa:</b> too vem ANTES do adjetivo (too small). enough vem DEPOIS (small enough).</div>`,
+perguntas:[
+{q:"Qual a diferença entre <span class=\"en\">too small</span> e <span class=\"en\">small enough</span>?",modelo:"<b>too small</b> = pequeno DEMAIS (excessivo, ruim). <b>small enough</b> = pequeno o suficiente (do tamanho certo). O too vem antes; o enough vem depois."},
+{q:"Traduza: <span class=\"en\">I don't have enough money.</span>",modelo:"<b>Eu não tenho dinheiro suficiente.</b> (have enough = ter o suficiente)."}
+]
+},
+{
+titulo:"De adjetivo para advérbio (+ -ly)",
+html:`<p class="txt">O <b>adjetivo</b> descreve uma coisa (a <b>slow</b> car = um carro lento). O <b>advérbio</b> descreve <b>como</b> alguém faz uma ação (he drives <b>slowly</b> = ele dirige lentamente).</p>
+<p class="txt">A regra mais comum: para virar advérbio, é só acrescentar <b>-ly</b> no fim do adjetivo. Se o adjetivo termina em <b>-y</b>, o y vira <b>i</b> antes do -ly.</p>
+<table class="tabela"><tr><th>Adjetivo</th><th>Advérbio</th></tr>
+<tr><td>slow</td><td><b>slowly</b></td></tr>
+<tr><td>careful</td><td><b>carefully</b></td></tr>
+<tr><td>quick</td><td><b>quickly</b></td></tr>
+<tr><td>quiet</td><td><b>quietly</b></td></tr>
+<tr><td>happy (termina em -y)</td><td><b>happily</b> (y → i)</td></tr>
+<tr><td>easy (termina em -y)</td><td><b>easily</b> (y → i)</td></tr>
+<tr><td>angry (termina em -y)</td><td><b>angrily</b> (y → i)</td></tr></table>
+<div class="ex-box"><h4>🔊 Ouça os exemplos</h4>
+<div class="ej"><span>My mom always drives very <b>slowly</b>.</span><button class="btn-audio" onclick="speak('My mom always drives very slowly')">🔊</button></div>
+<div class="ej"><span>I do my homework very <b>carefully</b>.</span><button class="btn-audio" onclick="speak('I do my homework very carefully')">🔊</button></div>
+<div class="ej"><span>She solved it <b>easily</b>.</span><button class="btn-audio" onclick="speak('She solved it easily')">🔊</button></div></div>`,
+perguntas:[
+{q:"Escreva o advérbio de <span class=\"en\">careful</span> e de <span class=\"en\">quick</span>.",modelo:"<b>careful → carefully</b> e <b>quick → quickly</b> (só acrescenta -ly)."},
+{q:"Por que <span class=\"en\">easy</span> vira <span class=\"en\">easily</span> e não <span class=\"en\">easyly</span>?",modelo:"Porque o adjetivo termina em <b>-y</b>. Nesse caso o y vira <b>i</b> antes do -ly: easy → easi + ly = <b>easily</b>. O mesmo em happy → happily."}
+]
+},
+{
+titulo:"Advérbios irregulares: fast, hard, well",
+html:`<p class="txt">Alguns advérbios são <b>rebeldes</b>: eles NÃO ganham -ly. Os três campeões de prova são:</p>
+<table class="tabela"><tr><th>Adjetivo</th><th>Advérbio</th></tr>
+<tr><td>fast (rápido)</td><td><b>fast</b> (igualzinho!)</td></tr>
+<tr><td>hard (difícil / com esforço)</td><td><b>hard</b> (igualzinho!)</td></tr>
+<tr><td>good (bom)</td><td><b>well</b> (muda completamente!)</td></tr></table>
+<p class="txt">Cuidado: <span class="en">fastly</span> e <span class="en">goodly</span> <b>não existem</b>. O advérbio de <span class="en">good</span> é sempre <span class="en">well</span> (bem).</p>
+<div class="ex-box"><h4>🔊 Ouça os exemplos</h4>
+<div class="ej"><span>He runs very <b>fast</b>.</span><button class="btn-audio" onclick="speak('He runs very fast')">🔊</button></div>
+<div class="ej"><span>She works <b>hard</b> every day.</span><button class="btn-audio" onclick="speak('She works hard every day')">🔊</button></div>
+<div class="ej"><span>They sing very <b>well</b>.</span><button class="btn-audio" onclick="speak('They sing very well')">🔊</button></div></div>
+<div class="postit">📌 <b>Decore:</b> good vira <b>well</b>. "He is a good singer" (adjetivo) → "He sings well" (advérbio).</div>`,
+perguntas:[
+{q:"Qual o advérbio de <span class=\"en\">good</span>? E de <span class=\"en\">fast</span>?",modelo:"<b>good → well</b> (muda tudo) e <b>fast → fast</b> (não muda). São irregulares."},
+{q:"Complete e traduza: <span class=\"en\">She sings very ____.</span> (good)",modelo:"<b>She sings very well.</b> → Ela canta muito bem. (good vira well, nunca goodly)."}
+]
+},
+{
+titulo:"Places to Visit — vocabulário",
+html:`<p class="txt">A Unit 7 também traz <b>lugares para visitar</b> pelo mundo. Ouça cada palavra e memorize com a tradução:</p>
+<div class="ex-box"><h4>🔊 Ouça o vocabulário</h4>
+<div class="ej"><span><b>castle</b> — castelo</span><button class="btn-audio" onclick="speak('castle')">🔊</button></div>
+<div class="ej"><span><b>cave</b> — caverna</span><button class="btn-audio" onclick="speak('cave')">🔊</button></div>
+<div class="ej"><span><b>coastline</b> — litoral, costa</span><button class="btn-audio" onclick="speak('coastline')">🔊</button></div>
+<div class="ej"><span><b>lighthouse</b> — farol</span><button class="btn-audio" onclick="speak('lighthouse')">🔊</button></div>
+<div class="ej"><span><b>opera house</b> — casa de ópera</span><button class="btn-audio" onclick="speak('opera house')">🔊</button></div>
+<div class="ej"><span><b>pyramid</b> — pirâmide</span><button class="btn-audio" onclick="speak('pyramid')">🔊</button></div>
+<div class="ej"><span><b>rainforest</b> — floresta tropical</span><button class="btn-audio" onclick="speak('rainforest')">🔊</button></div>
+<div class="ej"><span><b>reef</b> — recife (de coral)</span><button class="btn-audio" onclick="speak('reef')">🔊</button></div>
+<div class="ej"><span><b>ruin</b> — ruína</span><button class="btn-audio" onclick="speak('ruin')">🔊</button></div>
+<div class="ej"><span><b>temple</b> — templo</span><button class="btn-audio" onclick="speak('temple')">🔊</button></div>
+<div class="ej"><span><b>tomb</b> — túmulo, tumba</span><button class="btn-audio" onclick="speak('tomb')">🔊</button></div></div>
+<div class="postit">📌 <b>Não confunda:</b> lighthouse = FAROL (torre com luz para navios). coastline = a LINHA da costa (onde a terra encontra o mar).</div>`,
+perguntas:[
+{q:"O que é um <span class=\"en\">lighthouse</span>? E uma <span class=\"en\">cave</span>?",modelo:"<b>lighthouse</b> = farol (torre alta com uma luz que guia os navios). <b>cave</b> = caverna (buraco grande dentro de uma montanha ou rocha)."},
+{q:"Como se diz em inglês <b>pirâmide</b>, <b>recife</b> e <b>túmulo</b>?",modelo:"pirâmide = <b>pyramid</b>, recife = <b>reef</b>, túmulo/tumba = <b>tomb</b>."}
+]
+}
+];
+
+// ---------- ESTADO ----------
+const SK="ingles6_u7_leitura_v1";
+let estado={desbloqueado:0,respostas:{},conferido:{},auto:{}};
+
+function carregar(){try{const d=JSON.parse(localStorage.getItem(SK)||"null");if(d){estado=Object.assign(estado,d);
+  if(d.ts){const dt=new Date(d.ts);document.getElementById("saveInfo").textContent="💾 Último acesso: "+dt.toLocaleString('pt-BR').slice(0,17);}}}catch(e){}}
+function salvar(){estado.ts=Date.now();try{localStorage.setItem(SK,JSON.stringify(estado));const dt=new Date();document.getElementById("saveInfo").textContent="💾 Salvo às "+dt.toLocaleTimeString('pt-BR').slice(0,5);}catch(e){}}
+
+function render(){
+  const wrap=document.getElementById("blocos");wrap.innerHTML="";
+  BLOCOS.forEach((b,bi)=>{
+    const locked=bi>estado.desbloqueado;
+    const div=document.createElement("div");div.className="bloco"+(locked?" locked":"");div.id="bloco-"+bi;
+    let perg="";
+    b.perguntas.forEach((p,pi)=>{
+      const val=(estado.respostas[bi]&&estado.respostas[bi][pi])||"";
+      perg+=`<div class="pergunta"><label><span class="q">✏️ Pergunta ${pi+1}:</span> ${p.q}</label>
+      <textarea id="ta-${bi}-${pi}" oninput="onInput(${bi})" placeholder="Escreva sua resposta aqui...">${val}</textarea></div>`;
+    });
+    const conf=estado.conferido[bi];
+    let modeloHTML="";
+    b.perguntas.forEach((p,pi)=>{modeloHTML+=`<p><b>Pergunta ${pi+1}:</b> ${p.modelo}</p>`;});
+    const autoSel=estado.auto[bi];
+    div.innerHTML=`<div class="bloco-cab"><div class="bloco-num">${bi+1}</div><h2>${b.titulo}</h2></div>
+      ${b.html}${perg}
+      <button class="btn-conferir off" id="btn-${bi}" onclick="conferir(${bi})">🔍 Conferir respostas</button>
+      <div class="modelo ${conf?'show':''}" id="modelo-${bi}">
+        <h4>✅ Resposta modelo — compare com a sua:</h4>${modeloHTML}
+        <div class="auto"><span>Como você foi nesta parada?</span>
+          <button class="${autoSel==='ok'?'sel':''}" onclick="marcarAuto(${bi},'ok')">😀 Acertei</button>
+          <button class="${autoSel==='mm'?'sel':''}" onclick="marcarAuto(${bi},'mm')">😐 Mais ou menos</button>
+          <button class="${autoSel==='no'?'sel':''}" onclick="marcarAuto(${bi},'no')">😟 Preciso revisar</button>
+        </div>
+        ${bi<BLOCOS.length-1?`<button class="next-btn" onclick="proximo(${bi})">✈️ Ir para a parada ${bi+2}</button>`:`<button class="next-btn" onclick="mostrarFinal()">⚠️ Ver as pegadinhas finais</button>`}
+      </div>`;
+    wrap.appendChild(div);
+    setTimeout(()=>{atualizarBtn(bi);},0);
+  });
+  if(estado.desbloqueado>=BLOCOS.length-1&&estado.conferido[BLOCOS.length-1]){document.getElementById("finalBox").classList.remove("locked");}
+  renderJornada();
+}
+function renderJornada(){
+  const j=document.getElementById("jornada");j.innerHTML="";
+  BLOCOS.forEach((b,bi)=>{
+    const d=document.createElement("div");d.className="pj"+(estado.conferido[bi]?" done":(bi===estado.desbloqueado?" now":""));
+    d.textContent=estado.conferido[bi]?"✓":(bi+1);j.appendChild(d);
+  });
+}
+function onInput(bi){
+  if(!estado.respostas[bi])estado.respostas[bi]={};
+  BLOCOS[bi].perguntas.forEach((p,pi)=>{const el=document.getElementById(`ta-${bi}-${pi}`);if(el)estado.respostas[bi][pi]=el.value;});
+  atualizarBtn(bi);salvar();
+}
+function atualizarBtn(bi){
+  const btn=document.getElementById("btn-"+bi);if(!btn)return;
+  let ok=true;BLOCOS[bi].perguntas.forEach((p,pi)=>{const el=document.getElementById(`ta-${bi}-${pi}`);if(!el||el.value.trim().length<3)ok=false;});
+  if(ok||estado.conferido[bi]){btn.classList.remove("off");}else{btn.classList.add("off");}
+}
+function conferir(bi){
+  let ok=true;BLOCOS[bi].perguntas.forEach((p,pi)=>{const el=document.getElementById(`ta-${bi}-${pi}`);if(!el||el.value.trim().length<3)ok=false;});
+  if(!ok){toast("Responda todas as perguntas (mín. 3 letras) antes de conferir.");return;}
+  estado.conferido[bi]=true;document.getElementById("modelo-"+bi).classList.add("show");
+  salvar();renderJornada();
+  if(bi===BLOCOS.length-1)mostrarFinal();
+}
+function marcarAuto(bi,v){estado.auto[bi]=v;salvar();render();}
+function proximo(bi){
+  if(estado.desbloqueado<bi+1)estado.desbloqueado=bi+1;salvar();render();
+  setTimeout(()=>{const el=document.getElementById("bloco-"+(bi+1));if(el)el.scrollIntoView({behavior:"smooth",block:"start"});},80);
+}
+function mostrarFinal(){
+  if(estado.desbloqueado<BLOCOS.length-1)estado.desbloqueado=BLOCOS.length-1;salvar();
+  document.getElementById("finalBox").classList.remove("locked");
+  setTimeout(()=>document.getElementById("finalBox").scrollIntoView({behavior:"smooth"}),80);
+}
+// salvamento / io
+function exportar(){const blob=new Blob([JSON.stringify(estado,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="leitura_ingles_u7_progresso.json";a.click();toast("Progresso exportado!");}
+function importar(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{try{estado=Object.assign({desbloqueado:0,respostas:{},conferido:{},auto:{}},JSON.parse(e.target.result));salvar();render();toast("Progresso importado!");}catch(x){toast("Arquivo inválido.");}};r.readAsText(f);}
+function pedirZerar(){document.getElementById("overlay").classList.add("show");}
+function fecharModal(){document.getElementById("overlay").classList.remove("show");}
+function zerar(){localStorage.removeItem(SK);estado={desbloqueado:0,respostas:{},conferido:{},auto:{}};document.getElementById("finalBox").classList.add("locked");fecharModal();render();window.scrollTo(0,0);toast("Progresso zerado.");}
+
+carregar();render();
+</script>
+</body>
+</html>
