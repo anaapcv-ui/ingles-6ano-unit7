@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz — English Unit 7 · Passport Adventure (6º ano)</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+--navy:#0e1f3f;--navy2:#0a1730;--card:#15274d;--card2:#1b2f59;
+--gold:#edb84a;--gold2:#f4cf76;--teal:#31b0c6;
+--ink:#eef3fc;--ink2:#adbfdd;--red:#d1495b;
+--green:#2fae7a;--green-bg:#123a2f;--green-bd:#2c6d55;--cinza-bg:#1c2c4d;
+--raio:16px;--sombra:0 8px 26px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy2);font-family:'Nunito',sans-serif;color:var(--ink);min-height:100vh;
+background-image:radial-gradient(circle at 15% 12%,rgba(49,176,198,.10) 0,transparent 40%),radial-gradient(circle at 88% 90%,rgba(237,184,74,.10) 0,transparent 42%),radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:auto,auto,22px 22px;}
+.header{background:linear-gradient(135deg,#2a7fa0 0%,#155a86 100%);color:#fff;padding:26px 18px 22px;text-align:center;position:relative;overflow:hidden;border-bottom:6px solid #0d3f61}
+.header::after{content:'🧭 ✈️ 🗺️ 🏰 🐚 🗼 🏛️ 🌋';position:absolute;bottom:6px;left:0;right:0;font-size:15px;opacity:.28;letter-spacing:8px;white-space:nowrap;text-align:center}
+.stamp{display:inline-block;border:2px dashed rgba(255,255,255,.7);border-radius:40px;font-size:10.5px;font-weight:900;letter-spacing:2px;padding:5px 15px;margin-bottom:10px;text-transform:uppercase;transform:rotate(-3deg)}
+.header h1{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(26px,7vw,42px);text-shadow:2px 2px 0 rgba(0,0,0,.25)}
+.header p{font-size:13px;font-weight:800;opacity:.95;margin-top:3px}
+.nav{background:var(--navy);border-bottom:1px solid #24365f;display:flex;overflow-x:auto;padding:0 6px}
+.nav a{flex:1;min-width:104px;text-align:center;padding:11px 8px;font-size:12.5px;font-weight:800;color:var(--ink2);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap}
+.nav a.on{color:var(--gold2);border-bottom-color:var(--gold)}
+.nav a:hover{color:#fff}
+.resultado-barra{display:none;background:linear-gradient(135deg,#2a7fa0,#155a86);border-bottom:3px solid #0d3f61;padding:10px 18px;position:sticky;top:0;z-index:150}
+.resultado-barra.visivel{display:block}
+.rb-inner{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;max-width:720px;margin:0 auto}
+.rb-nota{font-family:'Baloo 2';font-size:20px;color:#fff}
+.rb-codigo{background:rgba(255,255,255,.9);border:1px solid #fff;padding:4px 12px;border-radius:8px;font-weight:900;font-size:16px;letter-spacing:2px;color:#0d3f61}
+.rb-status{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:800}
+.rb-status.bloqueado{background:rgba(209,73,91,.3);color:#fff}
+.rb-status.liberado{background:rgba(47,174,122,.4);color:#eafff5}
+.progress-container{background:var(--card);border-bottom:1px solid #24365f;padding:11px 18px;position:sticky;top:0;z-index:100}
+.progress-info{display:flex;justify-content:space-between;font-size:12.5px;font-weight:800;color:var(--ink2);margin-bottom:7px}
+.progress-bar{height:9px;background:var(--navy);border-radius:5px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:5px;transition:width .4s;width:0}
+.save-panel{background:var(--card);border-bottom:1px solid #24365f;padding:8px 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--ink2)}
+.save-panel .info{flex:1;min-width:150px}
+.btn-sp{background:transparent;border:1.5px solid var(--teal);color:var(--teal);padding:5px 11px;border-radius:8px;font-size:11.5px;cursor:pointer;font-family:'Nunito';font-weight:800}
+.btn-sp:hover{background:var(--teal);color:#04222a}
+.btn-sp.danger{border-color:var(--red);color:var(--red)}
+.btn-sp.danger:hover{background:var(--red);color:#fff}
+.content{max-width:720px;margin:0 auto;padding:18px 15px 120px}
+.intro-box{background:var(--card);border:1px dashed var(--teal);border-radius:14px;padding:14px 16px;font-size:14px;line-height:1.55;color:var(--ink2);margin-bottom:16px}
+.intro-box b{color:var(--gold2)}
+.q-card{background:var(--card);border:1.5px solid #2b3f6b;border-radius:var(--raio);padding:18px;margin-bottom:13px;box-shadow:var(--sombra);position:relative;overflow:hidden}
+.q-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,var(--teal),var(--gold))}
+.q-card.faltando{border-color:var(--red);animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--teal);color:#04222a;font-weight:900;font-size:13px;margin-bottom:10px}
+.q-card.respondida .q-num{background:var(--gold);color:#3a2a06}
+.q-texto{font-size:15px;font-weight:800;line-height:1.5;color:var(--ink);margin-bottom:13px}
+.q-texto .en{color:var(--teal);font-style:italic}
+.opcoes{display:flex;flex-direction:column;gap:8px}
+.opcao{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:1.5px solid #2b3f6b;border-radius:10px;cursor:pointer;transition:all .18s;font-size:14px;line-height:1.4;color:var(--ink);background:var(--navy)}
+.opcao:hover{border-color:var(--teal)}
+.opcao.selecionada{border-color:var(--gold);background:var(--card2);font-weight:800}
+.opcao-letra{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:900;background:#26385f;color:var(--ink2);flex-shrink:0}
+.opcao.selecionada .opcao-letra{background:var(--gold);color:#3a2a06}
+.opcao.resposta-certa{border-color:var(--green-bd);background:var(--green-bg)}
+.opcao.correta{border-color:var(--green);background:var(--green-bg);font-weight:800}
+.opcao.correta .opcao-letra{background:var(--green);color:#fff}
+.opcao.errada{border-color:var(--red);background:#3a1620}
+.opcao.errada .opcao-letra{background:var(--red);color:#fff}
+.q-card.bloqueada .opcao{cursor:default;pointer-events:none}
+.feedback{display:none;margin-top:12px;border-radius:10px;padding:11px 13px;font-size:13px;line-height:1.5}
+.feedback.show{display:block}
+.feedback.acertou{background:var(--green-bg);border:1px solid var(--green-bd);color:#bff0da}
+.feedback.errou{background:#3a1620;border:1px solid #6e2233;color:#f3c3cc}
+.feedback .ft{font-weight:900;margin-bottom:3px}
+.feedback .erradas{margin-top:7px;font-size:12px;color:var(--ink2)}
+.feedback .erradas p{margin-bottom:3px}
+.barra-fixa{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:2px solid #2b3f6b;padding:12px 16px;z-index:120}
+.barra-inner{max-width:720px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.aviso{display:none;color:#ffb3c0;font-size:12.5px;font-weight:800;flex:1}
+.aviso.show{display:block}
+.btn-enviar{flex:1;min-width:140px;background:var(--gold);color:#3a2a06;border:none;padding:13px;border-radius:12px;font-family:'Baloo 2';font-size:16px;font-weight:800;cursor:pointer}
+.btn-enviar.desabilitado{background:#3a5075;color:#8ba0c6;cursor:not-allowed}
+.btn-enviar.ativo:hover{background:var(--gold2)}
+.overlay{display:none;position:fixed;inset:0;background:rgba(4,10,22,.72);z-index:200;align-items:center;justify-content:center;padding:20px}
+.overlay.visivel{display:flex}
+.res-modal{background:var(--card);border:1.5px solid var(--gold);border-radius:22px;padding:26px 22px;max-width:380px;width:100%;text-align:center;box-shadow:var(--sombra)}
+.res-modal .emo{font-size:52px}
+.res-modal h2{font-family:'Baloo 2';font-weight:800;font-size:28px;color:var(--gold2);margin:6px 0}
+.res-modal .nota{font-size:38px;font-weight:900;color:var(--teal);margin:4px 0}
+.res-modal .msg{font-size:14px;color:var(--ink2);line-height:1.5;margin-bottom:14px}
+.res-modal .cod-label{font-size:12px;color:var(--ink2);font-weight:800}
+.res-modal .cod{font-size:25px;font-weight:900;letter-spacing:3px;color:var(--gold2);background:var(--navy);border-radius:12px;padding:8px;margin:6px 0 14px}
+.res-modal button{background:var(--gold);color:#3a2a06;border:none;padding:12px 24px;border-radius:12px;font-family:'Nunito';font-weight:900;font-size:14px;cursor:pointer}
+.modal-mini{background:var(--card);border:1.5px solid var(--gold);border-radius:18px;padding:24px;max-width:340px;text-align:center}
+.modal-mini p{font-size:15px;margin-bottom:16px;line-height:1.5}
+.modal-mini button{border:none;padding:10px 18px;border-radius:10px;font-family:'Nunito';font-weight:900;font-size:13.5px;cursor:pointer;margin:0 5px}
+.modal-mini .sim{background:var(--red);color:#fff}.modal-mini .nao{background:#33507e;color:#fff}
+.gab-section{display:none;margin-top:24px;background:var(--card);border:1.5px solid #2b3f6b;border-radius:var(--raio);padding:20px;box-shadow:var(--sombra)}
+.gab-section h2{font-size:20px;color:var(--gold2);margin-bottom:6px;text-align:center}
+.gab-section .sub{font-size:13px;color:var(--ink2);text-align:center;margin-bottom:14px}
+.codigo-area{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+.codigo-area input{padding:11px 14px;border:1.5px solid var(--gold);border-radius:10px;font-family:'Nunito';font-weight:900;font-size:16px;letter-spacing:2px;text-align:center;width:190px;text-transform:uppercase;color:var(--gold2);background:var(--navy)}
+.codigo-area button{background:var(--gold);color:#3a2a06;border:none;padding:11px 18px;border-radius:10px;font-weight:900;cursor:pointer;font-family:'Nunito'}
+.codigo-erro{display:none;color:#ffb3c0;font-size:12.5px;font-weight:800;text-align:center;margin-bottom:8px}
+.codigo-erro.show{display:block}
+.gab-lista{display:none}
+.gab-item{border-bottom:1px solid #23375f;padding:12px 0}
+.gab-item:last-child{border-bottom:none}
+.gab-q{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.gab-correta{background:var(--green-bg);border:1px solid var(--green-bd);border-radius:8px;padding:7px 11px;font-size:13px;color:#bff0da;font-weight:800;margin-bottom:5px}
+.gab-exp{font-size:12.5px;color:var(--ink2);line-height:1.5;margin-bottom:5px}
+.gab-errada{background:var(--cinza-bg);border-radius:8px;padding:6px 10px;font-size:12px;color:#9fb2d4;margin-bottom:3px}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--card2);color:var(--ink);border:1px solid var(--gold);padding:11px 18px;border-radius:12px;font-size:13px;font-weight:800;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+.footer{text-align:center;font-size:12px;color:var(--ink2);padding:20px}
+.footer a{color:var(--gold2)}
+</style>
+</head>
+<body>
+<div class="header">
+  <span class="stamp">Parada 2 · Passport Adventure</span>
+  <h1>🎯 Quiz</h1>
+  <p>15 questões · English Unit 7 · 6º ano</p>
+</div>
+<nav class="nav">
+  <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+  <a class="on" href="quiz.html">🎯 Quiz</a>
+  <a href="resumo.html">🗺️ Resumo</a>
+  <a href="simulado.html">📝 Simulado</a>
+  <a href="index.html">🧭 Início</a>
+</nav>
+<div class="resultado-barra" id="resBarra">
+  <div class="rb-inner"><span class="rb-nota" id="rbNota">0/15</span><span class="rb-codigo" id="rbCodigo">MED-00-XX</span><span class="rb-status bloqueado" id="rbStatus">Gabarito bloqueado</span></div>
+</div>
+<div class="progress-container">
+  <div class="progress-info"><span id="progTxt">0 de 15 respondidas</span><span id="progPct">0%</span></div>
+  <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+</div>
+<div class="save-panel">
+  <span class="info" id="saveInfo">💾 Suas respostas são salvas automaticamente.</span>
+  <button class="btn-sp" onclick="exportar()">📥 Exportar</button>
+  <button class="btn-sp" onclick="document.getElementById('impF').click()">📤 Importar</button>
+  <button class="btn-sp danger" onclick="pedirZerar()">🗑️ Zerar</button>
+  <input type="file" id="impF" accept=".json" style="display:none" onchange="importar(event)">
+</div>
+<div class="content">
+  <div class="intro-box">🧭 Responda as <b>15 questões</b> e clique em <b>Enviar</b>. Você recebe um <b>código</b> — entregue à sua mãe. Com o código, o <b>gabarito comentado</b> abre. Depois de enviar não dá para mudar. Good luck! ✈️</div>
+  <div id="quizArea"></div>
+  <div class="gab-section" id="gabSection">
+    <h2>🔑 Gabarito Comentado</h2>
+    <p class="sub">Digite o código que apareceu no resultado para liberar.</p>
+    <div class="codigo-area"><input type="text" id="codigoInput" placeholder="MED-__-__" maxlength="9"><button onclick="liberarGabarito()">Liberar</button></div>
+    <p class="codigo-erro" id="codigoErro">Código incorreto. Confira com a sua mãe.</p>
+    <div class="gab-lista" id="gabLista"></div>
+  </div>
+</div>
+<div class="barra-fixa"><div class="barra-inner">
+  <span class="aviso" id="aviso">⚠️ Responda todas as questões antes de enviar!</span>
+  <button class="btn-enviar desabilitado" id="btnEnviar" onclick="tentarEnviar()">Enviar Quiz</button>
+</div></div>
+<div class="overlay" id="overlay"><div class="res-modal">
+  <div class="emo" id="resEmo">🎉</div><h2 id="resTit">Great job!</h2><div class="nota" id="resNota">0/15</div>
+  <div class="msg" id="resMsg"></div><div class="cod-label">Seu código (entregue à mamãe):</div>
+  <div class="cod" id="resCod">MED-00-XX</div><button onclick="fecharResultado()">Ver gabarito</button>
+</div></div>
+<div class="overlay" id="overlayZ"><div class="modal-mini">
+  <p>🗑️ Zerar o quiz? (para outra criança usar)</p>
+  <button class="sim" onclick="zerar()">Sim, zerar</button><button class="nao" onclick="fecharZ()">Cancelar</button>
+</div></div>
+<div class="toast" id="toast"></div>
+<div class="footer">🧭 Passport Adventure · Quiz · Inglês Unit 7 · 6º ano<br><a href="index.html">Voltar ao início</a></div>
+<script>
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+// correta = TEXTO exato (nunca índice); erradas = objeto {textoOpcao:explicacao}
+const QUIZ=[
+{q:'Qual é o superlativo de <span class="en">big</span> (1 sílaba)?',opts:["the biggest","the most big","the bigest","the biger"],correta:"the biggest",exp:"big é curto e termina em vogal+consoante: dobra o g e ganha -est → the biggest (o maior).",erradas:{"the most big":"most é só para adjetivos longos (2+ sílabas).","the bigest":"faltou dobrar o g: é bigg-est.","the biger":"isso seria comparativo malfeito; superlativo leva -est."}},
+{q:'Qual é o superlativo de <span class="en">famous</span> (2+ sílabas)?',opts:["the most famous","the famousest","the more famous","the famousmore"],correta:"the most famous",exp:"famous é longo (2+ sílabas): usa the most na frente → the most famous.",erradas:{"the famousest":"\"famousest\" não existe; adjetivo longo não leva -est.","the more famous":"\"more\" é comparativo; superlativo é \"the most\".","the famousmore":"não existe essa forma."}},
+{q:'Qual é o superlativo IRREGULAR de <span class="en">good</span>?',opts:["the best","the goodest","the most good","the better"],correta:"the best",exp:"good é irregular: good → the best (o melhor).",erradas:{"the goodest":"\"goodest\" não existe.","the most good":"não se usa most com good.","the better":"\"better\" é comparativo (melhor que); superlativo é the best."}},
+{q:'Qual é o superlativo IRREGULAR de <span class="en">bad</span>?',opts:["the worst","the baddest","the most bad","the worse"],correta:"the worst",exp:"bad é irregular: bad → the worst (o pior).",erradas:{"the baddest":"\"baddest\" não é usado no inglês padrão.","the most bad":"não se usa most com bad.","the worse":"\"worse\" é comparativo (pior que); superlativo é the worst."}},
+{q:'Usamos o <b>superlativo</b> quando queremos:',opts:["comparar algo com um grupo inteiro (o mais de todos)","comparar só duas coisas iguais","falar de uma ação no passado","dizer a hora"],correta:"comparar algo com um grupo inteiro (o mais de todos)",exp:"O superlativo mostra o MAIS de tudo em um grupo (the biggest, the most famous).",erradas:{"comparar só duas coisas iguais":"para duas coisas usamos comparativo (bigger than) ou igualdade (as...as).","falar de uma ação no passado":"isso é tempo verbal, não superlativo.","dizer a hora":"nada a ver com superlativo."}},
+{q:'Complete: <span class="en">The Taj Mahal is ____ monument in India.</span> (famous)',opts:["the most famous","the famousest","most famous","the more famous"],correta:"the most famous",exp:"famous é longo → the most famous (o mais famoso).",erradas:{"the famousest":"\"famousest\" não existe.","most famous":"faltou o \"the\" no superlativo.","the more famous":"\"more\" é comparativo, não superlativo."}},
+{q:'<span class="en">too</span> + adjetivo quer dizer que algo é:',opts:["demais / excessivo","o suficiente","muito pouco importante","um lugar"],correta:"demais / excessivo",exp:"too + adjetivo = demais. Ex.: too late = tarde demais.",erradas:{"o suficiente":"\"o suficiente\" é enough, não too.","muito pouco importante":"too não fala de importância.","um lugar":"too não é lugar."}},
+{q:'Complete: <span class="en">My tent was big ____ for two people.</span> (o suficiente)',opts:["enough","too","most","very much"],correta:"enough",exp:"adjetivo + enough = o suficiente. E enough vem DEPOIS do adjetivo: big enough.",erradas:{"too":"too significa \"demais\", muda o sentido.","most":"most é para superlativo.","very much":"não encaixa aqui; o certo é enough."}},
+{q:'Traduza: <span class="en">I don\'t have enough money.</span>',opts:["Eu não tenho dinheiro suficiente.","Eu tenho muito dinheiro.","Eu quero mais dinheiro.","Eu gastei todo o dinheiro."],correta:"Eu não tenho dinheiro suficiente.",exp:"have enough = ter o suficiente. Na negativa: não tenho o suficiente.",erradas:{"Eu tenho muito dinheiro.":"isso seria o contrário (a lot of money).","Eu quero mais dinheiro.":"não há \"want\" na frase.","Eu gastei todo o dinheiro.":"não há verbo gastar (spend) na frase."}},
+{q:'Qual é o advérbio de <span class="en">slow</span> (lento)?',opts:["slowly","slow","slowlier","slowily"],correta:"slowly",exp:"Regra geral: adjetivo + -ly → slow + ly = slowly (lentamente).",erradas:{"slow":"slow é adjetivo; o advérbio precisa do -ly.","slowlier":"não existe essa forma.","slowily":"a grafia certa é slowly."}},
+{q:'Qual é o advérbio de <span class="en">careful</span> (cuidadoso)?',opts:["carefully","careful","carefuly","carefull"],correta:"carefully",exp:"careful + ly = carefully (com cuidado). Mantém os dois L.",erradas:{"careful":"careful é adjetivo; falta o -ly.","carefuly":"faltou um L: é careFULLY.","carefull":"isso nem é advérbio."}},
+{q:'Qual é o advérbio IRREGULAR de <span class="en">good</span> (bom)?',opts:["well","goodly","more good","gooder"],correta:"well",exp:"good é irregular: o advérbio é well (bem). Ex.: She sings well.",erradas:{"goodly":"\"goodly\" não é usado; o certo é well.","more good":"não existe \"more good\".","gooder":"\"gooder\" não existe; good é irregular."}},
+{q:'Qual é o advérbio de <span class="en">fast</span> (rápido)?',opts:["fast","fastly","faster","fastely"],correta:"fast",exp:"fast é irregular: o advérbio é igual ao adjetivo → fast. Ex.: He runs fast.",erradas:{"fastly":"\"fastly\" não existe.","faster":"\"faster\" é comparativo (mais rápido).","fastely":"não existe essa palavra."}},
+{q:'O que é um <span class="en">lighthouse</span>?',opts:["um farol","um castelo","uma caverna","um templo"],correta:"um farol",exp:"lighthouse = farol (torre alta com luz que guia os navios).",erradas:{"um castelo":"castelo = castle.","uma caverna":"caverna = cave.","um templo":"templo = temple."}},
+{q:'Como se diz <span class="en">caverna</span> em inglês?',opts:["cave","reef","tomb","ruin"],correta:"cave",exp:"caverna = cave.",erradas:{"reef":"reef = recife (de coral).","tomb":"tomb = túmulo.","ruin":"ruin = ruína."}}
+];
+// ---- shuffle por conteúdo (semente fixa por questão) ----
+function seededShuffle(arr,seed){const a=arr.slice();let s=seed;function rnd(){s=(s*9301+49297)%233280;return s/233280;}
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const ORD=QUIZ.map((it,i)=>seededShuffle(it.opts,(i+3)*7+1)); // ordem exibida de cada questão
+
+const SK="ingles6_u7_quiz_v1",CK="ingles6_u7_quiz_cod_v1";
+let respostas={},enviado=false,codigoGerado="";
+function letrasRandom(){const L="ABCDEFGHJKLMNPQRSTUVWXYZ";return L[Math.floor(Math.random()*L.length)]+L[Math.floor(Math.random()*L.length)];}
+function gerarCodigo(ac){return "MED-"+String(ac).padStart(2,"0")+"-"+letrasRandom();}
+
+function render(){
+  const area=document.getElementById("quizArea");area.innerHTML="";const L=["A","B","C","D"];
+  QUIZ.forEach((item,qi)=>{
+    const card=document.createElement("div");card.className="q-card"+(respostas[qi]!==undefined?" respondida":"");card.id="q-"+qi;
+    const ops=ORD[qi].map((op,oi)=>`<div class="opcao ${respostas[qi]===op?'selecionada':''}" onclick="selecionar(${qi},'${encodeURIComponent(op)}')"><span class="opcao-letra">${L[oi]}</span><span>${op}</span></div>`).join("");
+    card.innerHTML=`<div class="q-num">${qi+1}</div><div class="q-texto">${item.q}</div><div class="opcoes">${ops}</div><div class="feedback" id="fb-${qi}"></div>`;
+    area.appendChild(card);
+  });
+  atualizarProgress();if(enviado)aplicarBloqueio();
+}
+function selecionar(qi,opEnc){if(enviado)return;const op=decodeURIComponent(opEnc);respostas[qi]=op;salvar();
+  const card=document.getElementById("q-"+qi);card.classList.add("respondida");
+  card.querySelectorAll(".opcao").forEach((el)=>{const t=el.querySelector("span:last-child").textContent;el.classList.toggle("selecionada",t===op);});
+  atualizarProgress();}
+function atualizarProgress(){
+  const total=QUIZ.length,resp=Object.keys(respostas).length,pct=Math.round(resp/total*100);
+  document.getElementById("progTxt").textContent=resp+" de "+total+" respondidas";
+  document.getElementById("progPct").textContent=pct+"%";document.getElementById("progFill").style.width=pct+"%";
+  const btn=document.getElementById("btnEnviar");
+  if(resp===total&&!enviado){btn.classList.remove("desabilitado");btn.classList.add("ativo");}
+  else if(!enviado){btn.classList.add("desabilitado");btn.classList.remove("ativo");}
+}
+function tentarEnviar(){
+  if(enviado)return;
+  const faltam=QUIZ.map((_,i)=>respostas[i]===undefined?i:null).filter(x=>x!==null);
+  if(faltam.length>0){document.getElementById("aviso").classList.add("show");
+    faltam.forEach(i=>{const c=document.getElementById("q-"+i);c.classList.add("faltando");setTimeout(()=>c.classList.remove("faltando"),600);});
+    document.getElementById("q-"+faltam[0]).scrollIntoView({behavior:"smooth",block:"center"});return;}
+  document.getElementById("aviso").classList.remove("show");enviado=true;
+  let ac=0;QUIZ.forEach((item,qi)=>{if(respostas[qi]===item.correta)ac++;});
+  codigoGerado=localStorage.getItem(CK);
+  if(!codigoGerado||!codigoGerado.startsWith("MED-"+String(ac).padStart(2,"0"))){codigoGerado=gerarCodigo(ac);localStorage.setItem(CK,codigoGerado);}
+  const total=QUIZ.length,pct=Math.round(ac/total*100);let emo,tit,msg;
+  if(ac===total){emo="🏆";tit="PERFECT!";msg="Acertou tudo! Você está pronta para a viagem!";}
+  else if(pct>=73){emo="🎉";tit="Great job!";msg=ac+" de "+total+" — ótimo! Revise os erros no gabarito.";}
+  else if(pct>=53){emo="🙂";tit="Good!";msg=ac+" de "+total+" — bom caminho! Revise os temas que errou.";}
+  else{emo="💪";tit="Keep going!";msg=ac+" de "+total+" — volte ao resumo e tente de novo!";}
+  document.getElementById("resEmo").textContent=emo;document.getElementById("resTit").textContent=tit;
+  document.getElementById("resNota").textContent=ac+"/"+total;document.getElementById("resMsg").textContent=msg;
+  document.getElementById("resCod").textContent=codigoGerado;document.getElementById("overlay").classList.add("visivel");
+  document.getElementById("resBarra").classList.add("visivel");document.getElementById("rbNota").textContent=ac+"/"+total;document.getElementById("rbCodigo").textContent=codigoGerado;
+  const btn=document.getElementById("btnEnviar");btn.classList.remove("ativo");btn.classList.add("desabilitado");btn.textContent="Quiz enviado";
+  document.getElementById("gabSection").style.display="block";aplicarBloqueio();salvar();
+}
+function aplicarBloqueio(){
+  QUIZ.forEach((item,qi)=>{
+    const card=document.getElementById("q-"+qi);if(!card)return;card.classList.add("bloqueada");
+    const acertou=respostas[qi]===item.correta;
+    card.querySelectorAll(".opcao").forEach((el)=>{el.classList.remove("selecionada");const t=el.querySelector("span:last-child").textContent;
+      if(t===item.correta)el.classList.add("resposta-certa");
+      if(respostas[qi]===t)el.classList.add(t===item.correta?"correta":"errada");});
+    const fb=card.querySelector(".feedback");fb.classList.add("show",acertou?"acertou":"errou");
+    if(acertou){fb.innerHTML=`<div class="ft">✅ Correct!</div>${item.exp}`;}
+    else{let extra="";if(item.erradas){extra='<div class="erradas">'+Object.entries(item.erradas).map(([t,e])=>`<p><b>${t}:</b> ${e}</p>`).join("")+'</div>';}
+      fb.innerHTML=`<div class="ft">❌ Incorreto</div><div><b>Correta: ${item.correta}</b></div><div style="margin-top:5px">${item.exp}</div>${extra}`;}
+  });
+}
+function fecharResultado(){document.getElementById("overlay").classList.remove("visivel");document.getElementById("gabSection").scrollIntoView({behavior:"smooth"});}
+function liberarGabarito(){
+  const dig=document.getElementById("codigoInput").value.trim().toUpperCase();
+  const correto=(localStorage.getItem(CK)||codigoGerado||"").toUpperCase();
+  if(!correto||dig!==correto){document.getElementById("codigoErro").classList.add("show");return;}
+  document.getElementById("codigoErro").classList.remove("show");
+  document.getElementById("rbStatus").className="rb-status liberado";document.getElementById("rbStatus").textContent="Gabarito liberado";
+  document.getElementById("gabLista").style.display="block";let html="";
+  QUIZ.forEach((item,qi)=>{
+    const acertou=respostas[qi]===item.correta;const ra=respostas[qi]!==undefined?respostas[qi]:"(sem resposta)";
+    let erradasHTML="";if(item.erradas){erradasHTML=Object.entries(item.erradas).map(([t,e])=>`<div class="gab-errada"><b>${t}</b> — ${e}</div>`).join("");}
+    html+=`<div class="gab-item"><div class="gab-q">${qi+1}. ${item.q} ${acertou?'✅':'❌'}</div>
+    ${!acertou?`<div style="font-size:12px;color:#ffb3c0;margin-bottom:4px">Sua resposta: <em>${ra}</em></div>`:''}
+    <div class="gab-correta">✅ Correta: ${item.correta}</div><div class="gab-exp">${item.exp}</div>${erradasHTML}</div>`;
+  });
+  document.getElementById("gabLista").innerHTML=html;
+}
+function salvar(){const d={respostas,enviado,codigo:codigoGerado,ts:Date.now()};try{localStorage.setItem(SK,JSON.stringify(d));const dt=new Date();document.getElementById("saveInfo").textContent="💾 Salvo às "+dt.toLocaleTimeString('pt-BR').slice(0,5);}catch(e){}}
+function carregar(){try{const d=JSON.parse(localStorage.getItem(SK)||"null");if(d){respostas=d.respostas||{};enviado=d.enviado||false;codigoGerado=d.codigo||"";
+  if(d.ts){const dt=new Date(d.ts);document.getElementById("saveInfo").textContent="💾 Último acesso: "+dt.toLocaleString('pt-BR').slice(0,17);}
+  if(enviado){document.getElementById("gabSection").style.display="block";let ac=0;QUIZ.forEach((it,i)=>{if(respostas[i]===it.correta)ac++;});
+    document.getElementById("resBarra").classList.add("visivel");document.getElementById("rbNota").textContent=ac+"/"+QUIZ.length;document.getElementById("rbCodigo").textContent=codigoGerado;
+    const btn=document.getElementById("btnEnviar");btn.classList.add("desabilitado");btn.textContent="Quiz enviado";}}}catch(e){}}
+function exportar(){const blob=new Blob([JSON.stringify({respostas,enviado,codigo:codigoGerado},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="quiz_ingles_u7_progresso.json";a.click();toast("Progresso exportado!");}
+function importar(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{try{const d=JSON.parse(e.target.result);respostas=d.respostas||{};enviado=d.enviado||false;codigoGerado=d.codigo||"";if(codigoGerado)localStorage.setItem(CK,codigoGerado);salvar();render();toast("Progresso importado!");}catch(x){toast("Arquivo inválido.");}};r.readAsText(f);}
+function pedirZerar(){document.getElementById("overlayZ").classList.add("visivel");}
+function fecharZ(){document.getElementById("overlayZ").classList.remove("visivel");}
+function zerar(){localStorage.removeItem(SK);localStorage.removeItem(CK);respostas={};enviado=false;codigoGerado="";document.getElementById("gabSection").style.display="none";document.getElementById("resBarra").classList.remove("visivel");const btn=document.getElementById("btnEnviar");btn.textContent="Enviar Quiz";fecharZ();render();window.scrollTo(0,0);toast("Quiz zerado.");}
+carregar();render();
+</script>
+</body>
+</html>
