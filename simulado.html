@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado — English Unit 7 · Passport Adventure (6º ano)</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+--navy:#0e1f3f;--navy2:#0a1730;--card:#15274d;--card2:#1b2f59;
+--gold:#edb84a;--gold2:#f4cf76;--teal:#31b0c6;
+--ink:#eef3fc;--ink2:#adbfdd;--red:#d1495b;--red2:#b03246;
+--green:#2fae7a;--green-bg:#123a2f;--green-bd:#2c6d55;--cinza-bg:#1c2c4d;
+--raio:16px;--sombra:0 8px 26px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy2);font-family:'Nunito',sans-serif;color:var(--ink);min-height:100vh;
+background-image:radial-gradient(circle at 15% 12%,rgba(49,176,198,.10) 0,transparent 40%),radial-gradient(circle at 88% 90%,rgba(209,73,91,.10) 0,transparent 42%),radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:auto,auto,22px 22px;}
+.header{background:linear-gradient(135deg,#122a52 0%,#0b1c3a 100%);color:#fff;padding:26px 18px 22px;text-align:center;position:relative;overflow:hidden;border-bottom:6px solid var(--red)}
+.header::after{content:'🧭 ✈️ 🗺️ 🏰 🐚 🗼 🏛️ 🌋';position:absolute;bottom:6px;left:0;right:0;font-size:15px;opacity:.25;letter-spacing:8px;white-space:nowrap;text-align:center}
+.stamp{display:inline-block;border:2px dashed rgba(255,255,255,.7);border-radius:40px;font-size:10.5px;font-weight:900;letter-spacing:2px;padding:5px 15px;margin-bottom:10px;text-transform:uppercase;transform:rotate(-3deg)}
+.header h1{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(26px,7vw,42px);text-shadow:2px 2px 0 rgba(0,0,0,.3)}
+.header p{font-size:13px;font-weight:800;opacity:.95;margin-top:3px}
+.nav{background:var(--navy);border-bottom:1px solid #24365f;display:flex;overflow-x:auto;padding:0 6px}
+.nav a{flex:1;min-width:104px;text-align:center;padding:11px 8px;font-size:12.5px;font-weight:800;color:var(--ink2);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap}
+.nav a.on{color:var(--gold2);border-bottom-color:var(--gold)}
+.nav a:hover{color:#fff}
+.resultado-barra{display:none;background:linear-gradient(135deg,#122a52,#0b1c3a);border-bottom:3px solid var(--red);padding:10px 18px;position:sticky;top:0;z-index:150}
+.resultado-barra.visivel{display:block}
+.rb-inner{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;max-width:720px;margin:0 auto}
+.rb-nota{font-family:'Baloo 2';font-size:20px;color:#fff}
+.rb-codigo{background:rgba(255,255,255,.9);border:1px solid #fff;padding:4px 12px;border-radius:8px;font-weight:900;font-size:16px;letter-spacing:2px;color:var(--red2)}
+.rb-status{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:800}
+.rb-status.bloqueado{background:rgba(209,73,91,.3);color:#fff}
+.rb-status.liberado{background:rgba(47,174,122,.4);color:#eafff5}
+.progress-container{background:var(--card);border-bottom:1px solid #24365f;padding:11px 18px;position:sticky;top:0;z-index:100}
+.progress-info{display:flex;justify-content:space-between;font-size:12.5px;font-weight:800;color:var(--ink2);margin-bottom:7px}
+.progress-bar{height:9px;background:var(--navy);border-radius:5px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:5px;transition:width .4s;width:0}
+.save-panel{background:var(--card);border-bottom:1px solid #24365f;padding:8px 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--ink2)}
+.save-panel .info{flex:1;min-width:150px}
+.btn-sp{background:transparent;border:1.5px solid var(--teal);color:var(--teal);padding:5px 11px;border-radius:8px;font-size:11.5px;cursor:pointer;font-family:'Nunito';font-weight:800}
+.btn-sp:hover{background:var(--teal);color:#04222a}
+.btn-sp.danger{border-color:var(--red);color:var(--red)}
+.btn-sp.danger:hover{background:var(--red);color:#fff}
+.content{max-width:720px;margin:0 auto;padding:18px 15px 120px}
+.intro-box{background:var(--card);border:1px dashed var(--red);border-radius:14px;padding:14px 16px;font-size:14px;line-height:1.55;color:var(--ink2);margin-bottom:16px}
+.intro-box b{color:var(--gold2)}
+.q-card{background:var(--card);border:1.5px solid #2b3f6b;border-radius:var(--raio);padding:18px;margin-bottom:13px;box-shadow:var(--sombra);position:relative;overflow:hidden}
+.q-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,var(--red),var(--gold))}
+.q-card.faltando{border-color:var(--red);animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.q-top{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;font-weight:900;font-size:13px}
+.q-card.respondida .q-num{background:var(--gold);color:#3a2a06}
+.badge-tipo{font-size:10.5px;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px}
+.badge-mc{background:#26385f;color:#9fc2ff}
+.badge-fill{background:#2c1d45;color:#d6b3ff}
+.badge-reorder{background:#123a2f;color:#8ff0c4}
+.q-texto{font-size:15px;font-weight:800;line-height:1.5;color:var(--ink);margin-bottom:13px}
+.q-texto .en{color:var(--teal);font-style:italic}
+.opcoes{display:flex;flex-direction:column;gap:8px}
+.opcao{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:1.5px solid #2b3f6b;border-radius:10px;cursor:pointer;transition:all .18s;font-size:14px;line-height:1.4;color:var(--ink);background:var(--navy)}
+.opcao:hover{border-color:var(--teal)}
+.opcao.selecionada{border-color:var(--gold);background:var(--card2);font-weight:800}
+.opcao-letra{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:900;background:#26385f;color:var(--ink2);flex-shrink:0}
+.opcao.selecionada .opcao-letra{background:var(--gold);color:#3a2a06}
+.opcao.resposta-certa{border-color:var(--green-bd);background:var(--green-bg)}
+.opcao.correta{border-color:var(--green);background:var(--green-bg);font-weight:800}
+.opcao.correta .opcao-letra{background:var(--green);color:#fff}
+.opcao.errada{border-color:var(--red);background:#3a1620}
+.opcao.errada .opcao-letra{background:var(--red);color:#fff}
+.fill-input{width:100%;background:var(--navy);border:1.5px solid #2b3f6b;border-radius:10px;padding:11px 13px;color:var(--ink);font-family:'Nunito';font-size:15px;font-weight:800}
+.fill-input:focus{outline:none;border-color:var(--gold)}
+.fill-input.ok-c{border-color:var(--green);background:var(--green-bg)}
+.fill-input.no-c{border-color:var(--red);background:#3a1620}
+.reorder-line{min-height:46px;border:1.5px dashed #3a5075;border-radius:10px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px;background:var(--navy)}
+.reorder-bank{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--card2);border:1.5px solid #3a5075;color:var(--ink);padding:8px 13px;border-radius:9px;font-size:14px;font-weight:800;cursor:pointer}
+.chip:hover{border-color:var(--gold)}
+.chip.na-linha{background:#22406a;border-color:var(--gold)}
+.q-card.bloqueada .opcao,.q-card.bloqueada .chip{cursor:default;pointer-events:none}
+.q-card.bloqueada .fill-input{pointer-events:none}
+.feedback{display:none;margin-top:12px;border-radius:10px;padding:11px 13px;font-size:13px;line-height:1.5}
+.feedback.show{display:block}
+.feedback.acertou{background:var(--green-bg);border:1px solid var(--green-bd);color:#bff0da}
+.feedback.errou{background:#3a1620;border:1px solid #6e2233;color:#f3c3cc}
+.feedback .ft{font-weight:900;margin-bottom:3px}
+.feedback .erradas{margin-top:7px;font-size:12px;color:var(--ink2)}
+.feedback .erradas p{margin-bottom:3px}
+.barra-fixa{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:2px solid #2b3f6b;padding:12px 16px;z-index:120}
+.barra-inner{max-width:720px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.aviso{display:none;color:#ffb3c0;font-size:12.5px;font-weight:800;flex:1}
+.aviso.show{display:block}
+.btn-enviar{flex:1;min-width:140px;background:var(--red);color:#fff;border:none;padding:13px;border-radius:12px;font-family:'Baloo 2';font-size:16px;font-weight:800;cursor:pointer}
+.btn-enviar.desabilitado{background:#3a5075;color:#8ba0c6;cursor:not-allowed}
+.btn-enviar.ativo:hover{background:var(--red2)}
+.overlay{display:none;position:fixed;inset:0;background:rgba(4,10,22,.72);z-index:200;align-items:center;justify-content:center;padding:20px}
+.overlay.visivel{display:flex}
+.res-modal{background:var(--card);border:1.5px solid var(--gold);border-radius:22px;padding:26px 22px;max-width:380px;width:100%;text-align:center;box-shadow:var(--sombra)}
+.res-modal .emo{font-size:52px}
+.res-modal h2{font-family:'Baloo 2';font-weight:800;font-size:28px;color:var(--gold2);margin:6px 0}
+.res-modal .nota{font-size:38px;font-weight:900;color:var(--red);margin:4px 0}
+.res-modal .msg{font-size:14px;color:var(--ink2);line-height:1.5;margin-bottom:14px}
+.res-modal .cod-label{font-size:12px;color:var(--ink2);font-weight:800}
+.res-modal .cod{font-size:25px;font-weight:900;letter-spacing:3px;color:var(--gold2);background:var(--navy);border-radius:12px;padding:8px;margin:6px 0 14px}
+.res-modal button{background:var(--red);color:#fff;border:none;padding:12px 24px;border-radius:12px;font-family:'Nunito';font-weight:900;font-size:14px;cursor:pointer}
+.modal-mini{background:var(--card);border:1.5px solid var(--gold);border-radius:18px;padding:24px;max-width:340px;text-align:center}
+.modal-mini p{font-size:15px;margin-bottom:16px;line-height:1.5}
+.modal-mini button{border:none;padding:10px 18px;border-radius:10px;font-family:'Nunito';font-weight:900;font-size:13.5px;cursor:pointer;margin:0 5px}
+.modal-mini .sim{background:var(--red);color:#fff}.modal-mini .nao{background:#33507e;color:#fff}
+.gab-section{display:none;margin-top:24px;background:var(--card);border:1.5px solid #2b3f6b;border-radius:var(--raio);padding:20px;box-shadow:var(--sombra)}
+.gab-section h2{font-size:20px;color:var(--gold2);margin-bottom:6px;text-align:center}
+.gab-section .sub{font-size:13px;color:var(--ink2);text-align:center;margin-bottom:14px}
+.codigo-area{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+.codigo-area input{padding:11px 14px;border:1.5px solid var(--gold);border-radius:10px;font-family:'Nunito';font-weight:900;font-size:16px;letter-spacing:2px;text-align:center;width:190px;text-transform:uppercase;color:var(--gold2);background:var(--navy)}
+.codigo-area button{background:var(--red);color:#fff;border:none;padding:11px 18px;border-radius:10px;font-weight:900;cursor:pointer;font-family:'Nunito'}
+.codigo-erro{display:none;color:#ffb3c0;font-size:12.5px;font-weight:800;text-align:center;margin-bottom:8px}
+.codigo-erro.show{display:block}
+.gab-lista{display:none}
+.gab-item{border-bottom:1px solid #23375f;padding:12px 0}
+.gab-item:last-child{border-bottom:none}
+.gab-q{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.gab-correta{background:var(--green-bg);border:1px solid var(--green-bd);border-radius:8px;padding:7px 11px;font-size:13px;color:#bff0da;font-weight:800;margin-bottom:5px}
+.gab-exp{font-size:12.5px;color:var(--ink2);line-height:1.5;margin-bottom:5px}
+.gab-errada{background:var(--cinza-bg);border-radius:8px;padding:6px 10px;font-size:12px;color:#9fb2d4;margin-bottom:3px}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--card2);color:var(--ink);border:1px solid var(--gold);padding:11px 18px;border-radius:12px;font-size:13px;font-weight:800;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+.footer{text-align:center;font-size:12px;color:var(--ink2);padding:20px}
+.footer a{color:var(--gold2)}
+</style>
+</head>
+<body>
+<div class="header">
+  <span class="stamp">Parada 4 · Passport Adventure</span>
+  <h1>📝 Simulado</h1>
+  <p>19 questões · English Unit 7 · 6º ano</p>
+</div>
+<nav class="nav">
+  <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+  <a href="quiz.html">🎯 Quiz</a>
+  <a href="resumo.html">🗺️ Resumo</a>
+  <a class="on" href="simulado.html">📝 Simulado</a>
+  <a href="index.html">🧭 Início</a>
+</nav>
+<div class="resultado-barra" id="resBarra">
+  <div class="rb-inner"><span class="rb-nota" id="rbNota">0/19</span><span class="rb-codigo" id="rbCodigo">SIM-00-XX</span><span class="rb-status bloqueado" id="rbStatus">Gabarito bloqueado</span></div>
+</div>
+<div class="progress-container">
+  <div class="progress-info"><span id="progTxt">0 de 19 respondidas</span><span id="progPct">0%</span></div>
+  <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+</div>
+<div class="save-panel">
+  <span class="info" id="saveInfo">💾 Suas respostas são salvas automaticamente.</span>
+  <button class="btn-sp" onclick="exportar()">📥 Exportar</button>
+  <button class="btn-sp" onclick="document.getElementById('impF').click()">📤 Importar</button>
+  <button class="btn-sp danger" onclick="pedirZerar()">🗑️ Zerar</button>
+  <input type="file" id="impF" accept=".json" style="display:none" onchange="importar(event)">
+</div>
+<div class="content">
+  <div class="intro-box">🧭 Este é o <b>ensaio da prova</b>! São <b>3 tipos</b>: 🔵 Múltipla Escolha, 🟣 Complete (escreva a palavra) e 🟢 Reordenar (monte a frase). Responda tudo e clique em <b>Enviar</b>. Você recebe um <b>código</b> para a mamãe liberar o gabarito. Sem consultar o resumo — é treino de verdade! 💪</div>
+  <div id="simArea"></div>
+  <div class="gab-section" id="gabSection">
+    <h2>🔑 Gabarito Comentado</h2>
+    <p class="sub">Digite o código que apareceu no resultado para liberar.</p>
+    <div class="codigo-area"><input type="text" id="codigoInput" placeholder="SIM-__-__" maxlength="9"><button onclick="liberarGabarito()">Liberar</button></div>
+    <p class="codigo-erro" id="codigoErro">Código incorreto. Confira com a sua mãe.</p>
+    <div class="gab-lista" id="gabLista"></div>
+  </div>
+</div>
+<div class="barra-fixa"><div class="barra-inner">
+  <span class="aviso" id="aviso">⚠️ Responda todas as questões antes de enviar!</span>
+  <button class="btn-enviar desabilitado" id="btnEnviar" onclick="tentarEnviar()">Enviar Simulado</button>
+</div></div>
+<div class="overlay" id="overlay"><div class="res-modal">
+  <div class="emo" id="resEmo">🎉</div><h2 id="resTit">Great job!</h2><div class="nota" id="resNota">0/19</div>
+  <div class="msg" id="resMsg"></div><div class="cod-label">Seu código (entregue à mamãe):</div>
+  <div class="cod" id="resCod">SIM-00-XX</div><button onclick="fecharResultado()">Ver gabarito</button>
+</div></div>
+<div class="overlay" id="overlayZ"><div class="modal-mini">
+  <p>🗑️ Zerar o simulado? (para outra criança usar)</p>
+  <button class="sim" onclick="zerar()">Sim, zerar</button><button class="nao" onclick="fecharZ()">Cancelar</button>
+</div></div>
+<div class="toast" id="toast"></div>
+<div class="footer">🧭 Passport Adventure · Simulado · Inglês Unit 7 · 6º ano<br><a href="index.html">Voltar ao início</a></div>
+<script>
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+function norm(s){return (s||"").toString().trim().toLowerCase().replace(/[.!?]+$/,"").replace(/\s+/g," ");}
+
+const SIM=[
+// ---- MULTIPLE CHOICE ----
+{tipo:'mc',q:'The Nile is ____ river in the world. (long)',opts:["the longest","the most long","the longer","the longuest"],correta:"the longest",exp:"long é curto (1 sílaba) → the longest (o mais longo).",erradas:{"the most long":"most é só para adjetivos longos.","the longer":"\"longer\" é comparativo (mais longo que).","the longuest":"grafia errada; o certo é longest."}},
+{tipo:'mc',q:'Mount Everest is ____ mountain on Earth. (high)',opts:["the highest","the most high","the higher","the heighest"],correta:"the highest",exp:"high é curto → the highest (a mais alta).",erradas:{"the most high":"most só para adjetivos longos.","the higher":"comparativo (mais alta que).","the heighest":"grafia errada; é highest."}},
+{tipo:'mc',q:'This is ____ book in the library. (interesting)',opts:["the most interesting","the interestingest","the more interesting","most interesting"],correta:"the most interesting",exp:"interesting é longo (2+ sílabas) → the most interesting.",erradas:{"the interestingest":"não existe \"interestingest\".","the more interesting":"\"more\" é comparativo, não superlativo.","most interesting":"faltou o \"the\"."}},
+{tipo:'mc',q:'This box is ____ heavy. I can\'t lift it!',opts:["too","enough","not enough","the most"],correta:"too",exp:"too + adjetivo = demais. too heavy = pesado demais.",erradas:{"enough":"enough é \"o suficiente\", não encaixa.","not enough":"muda o sentido para \"não o suficiente\".","the most":"the most é para superlativo."}},
+{tipo:'mc',q:'Are you tall ____ to go on the ride?',opts:["enough","too","not","the most"],correta:"enough",exp:"adjetivo + enough = o suficiente, e vem DEPOIS do adjetivo: tall enough.",erradas:{"too":"too significa \"demais\".","not":"sozinho não completa a ideia.","the most":"é para superlativo."}},
+{tipo:'mc',q:'My brother speaks English very ____. (good)',opts:["well","good","goodly","best"],correta:"well",exp:"good é irregular: o advérbio é well (bem).",erradas:{"good":"good é adjetivo, não advérbio.","goodly":"\"goodly\" não existe.","best":"best é superlativo (o melhor)."}},
+{tipo:'mc',q:'The turtle moves very ____. (slow)',opts:["slowly","slow","slowlier","slowily"],correta:"slowly",exp:"slow + ly = slowly (lentamente).",erradas:{"slow":"slow é adjetivo; falta o -ly.","slowlier":"não existe.","slowily":"grafia errada; é slowly."}},
+{tipo:'mc',q:'A tall tower with a light that helps ships is a ____.',opts:["lighthouse","temple","castle","pyramid"],correta:"lighthouse",exp:"lighthouse = farol (torre com luz para os navios).",erradas:{"temple":"temple = templo.","castle":"castle = castelo.","pyramid":"pyramid = pirâmide."}},
+// ---- FILL IN THE BLANK ----
+{tipo:'fill',q:'Escreva o <b>superlativo</b> de <span class="en">big</span> (comece com "the"):',aceitas:["the biggest","biggest"],correta:"the biggest",exp:"big dobra o g e ganha -est → the biggest."},
+{tipo:'fill',q:'Escreva o <b>advérbio</b> de <span class="en">careful</span>:',aceitas:["carefully"],correta:"carefully",exp:"careful + ly = carefully (com cuidado)."},
+{tipo:'fill',q:'Escreva o <b>advérbio</b> de <span class="en">easy</span>:',aceitas:["easily"],correta:"easily",exp:"easy termina em -y → o y vira i → easily."},
+{tipo:'fill',q:'Escreva o <b>superlativo irregular</b> de <span class="en">good</span> (comece com "the"):',aceitas:["the best","best"],correta:"the best",exp:"good é irregular → the best (o melhor)."},
+{tipo:'fill',q:'Complete: <span class="en">My bag isn\'t big ____ .</span> (o suficiente)',aceitas:["enough"],correta:"enough",exp:"adjetivo + enough = o suficiente; vem depois do adjetivo."},
+{tipo:'fill',q:'Escreva em inglês a palavra para <b>farol</b>:',aceitas:["lighthouse"],correta:"lighthouse",exp:"farol = lighthouse."},
+{tipo:'fill',q:'Escreva em inglês a palavra para <b>caverna</b>:',aceitas:["cave"],correta:"cave",exp:"caverna = cave."},
+// ---- REORDER ----
+{tipo:'reorder',q:'Coloque em ordem para formar a frase:',palavras:["It","is","the","oldest","castle"],exp:"It is the oldest castle. (É o castelo mais antigo — superlativo the oldest.)"},
+{tipo:'reorder',q:'Coloque em ordem para formar a frase:',palavras:["Paris","is","the","most","beautiful","city"],exp:"Paris is the most beautiful city. (adjetivo longo → the most beautiful.)"},
+{tipo:'reorder',q:'Coloque em ordem para formar a frase:',palavras:["I","don't","have","enough","money"],exp:"I don't have enough money. (have enough = ter o suficiente.)"},
+{tipo:'reorder',q:'Coloque em ordem para formar a frase:',palavras:["She","drives","very","carefully"],exp:"She drives very carefully. (advérbio carefully = com cuidado.)"}
+];
+function seededShuffle(arr,seed){const a=arr.slice();let s=seed;function rnd(){s=(s*9301+49297)%233280;return s/233280;}
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+// ordem exibida das opções (mc) e dos chips (reorder)
+const MCORD={},RBANK={};
+SIM.forEach((it,i)=>{if(it.tipo==='mc')MCORD[i]=seededShuffle(it.opts,(i+5)*11+3);
+  if(it.tipo==='reorder')RBANK[i]=seededShuffle(it.palavras.map((w,k)=>({w,k})),(i+2)*13+7);});
+
+const SK="ingles6_u7_simulado_v1",CK="ingles6_u7_simulado_cod_v1";
+let respostas={},enviado=false,codigoGerado="";
+function letrasRandom(){const L="ABCDEFGHJKLMNPQRSTUVWXYZ";return L[Math.floor(Math.random()*L.length)]+L[Math.floor(Math.random()*L.length)];}
+function gerarCodigo(ac){return "SIM-"+String(ac).padStart(2,"0")+"-"+letrasRandom();}
+
+function respondida(qi){const it=SIM[qi],r=respostas[qi];
+  if(it.tipo==='mc')return r!==undefined&&r!=="";
+  if(it.tipo==='fill')return typeof r==='string'&&r.trim().length>0;
+  if(it.tipo==='reorder')return Array.isArray(r)&&r.length===it.palavras.length;
+  return false;}
+function acertou(qi){const it=SIM[qi],r=respostas[qi];
+  if(it.tipo==='mc')return r===it.correta;
+  if(it.tipo==='fill')return it.aceitas.map(norm).includes(norm(r));
+  if(it.tipo==='reorder'){if(!Array.isArray(r))return false;const w=r.map(k=>RBANK[qi][k].w);return norm(w.join(" "))===norm(it.palavras.join(" "));}
+  return false;}
+
+const BADGE={mc:['badge-mc','Múltipla escolha'],fill:['badge-fill','Complete'],reorder:['badge-reorder','Reordenar']};
+const L=["A","B","C","D","E"];
+function render(){
+  const area=document.getElementById("simArea");area.innerHTML="";
+  SIM.forEach((it,qi)=>{
+    const card=document.createElement("div");card.className="q-card"+(respondida(qi)?" respondida":"");card.id="q-"+qi;
+    let corpo="";
+    if(it.tipo==='mc'){
+      corpo='<div class="opcoes">'+MCORD[qi].map((op,oi)=>`<div class="opcao ${respostas[qi]===op?'selecionada':''}" onclick="selMC(${qi},'${encodeURIComponent(op)}')"><span class="opcao-letra">${L[oi]}</span><span>${op}</span></div>`).join("")+'</div>';
+    }else if(it.tipo==='fill'){
+      const v=(typeof respostas[qi]==='string')?respostas[qi]:"";
+      corpo=`<input class="fill-input" id="fill-${qi}" value="${v.replace(/"/g,'&quot;')}" oninput="onFill(${qi})" placeholder="Escreva sua resposta em inglês...">`;
+    }else if(it.tipo==='reorder'){
+      corpo=`<div class="reorder-line" id="line-${qi}"></div><div class="reorder-bank" id="bank-${qi}"></div>`;
+    }
+    card.innerHTML=`<div class="q-top"><span class="q-num">${qi+1}</span><span class="badge-tipo ${BADGE[it.tipo][0]}">${BADGE[it.tipo][1]}</span></div>
+      <div class="q-texto">${it.q}</div>${corpo}<div class="feedback" id="fb-${qi}"></div>`;
+    area.appendChild(card);
+    if(it.tipo==='reorder')renderReorder(qi);
+  });
+  atualizarProgress();if(enviado)aplicarBloqueio();
+}
+function renderReorder(qi){
+  const line=document.getElementById("line-"+qi),bank=document.getElementById("bank-"+qi);if(!line||!bank)return;
+  line.innerHTML="";bank.innerHTML="";
+  const ordem=Array.isArray(respostas[qi])?respostas[qi]:[];
+  ordem.forEach(k=>{const c=document.createElement("span");c.className="chip na-linha";c.textContent=RBANK[qi][k].w;c.onclick=()=>{if(enviado)return;respostas[qi]=ordem.filter(x=>x!==k);salvar();render();};line.appendChild(c);});
+  RBANK[qi].forEach((o,k)=>{if(ordem.includes(k))return;const c=document.createElement("span");c.className="chip";c.textContent=o.w;c.onclick=()=>{if(enviado)return;const cur=Array.isArray(respostas[qi])?respostas[qi].slice():[];cur.push(k);respostas[qi]=cur;salvar();render();};bank.appendChild(c);});
+  if(ordem.length===0){line.innerHTML='<span style="color:#8ba0c6;font-size:12.5px;align-self:center">clique nas palavras abaixo na ordem certa ↓</span>';}
+}
+function selMC(qi,opEnc){if(enviado)return;respostas[qi]=decodeURIComponent(opEnc);salvar();render();}
+function onFill(qi){if(enviado)return;const el=document.getElementById("fill-"+qi);respostas[qi]=el.value;const card=document.getElementById("q-"+qi);card.classList.toggle("respondida",el.value.trim().length>0);atualizarProgress();salvar();}
+function atualizarProgress(){
+  const total=SIM.length;let resp=0;SIM.forEach((_,i)=>{if(respondida(i))resp++;});
+  const pct=Math.round(resp/total*100);
+  document.getElementById("progTxt").textContent=resp+" de "+total+" respondidas";
+  document.getElementById("progPct").textContent=pct+"%";document.getElementById("progFill").style.width=pct+"%";
+  const btn=document.getElementById("btnEnviar");
+  if(resp===total&&!enviado){btn.classList.remove("desabilitado");btn.classList.add("ativo");}
+  else if(!enviado){btn.classList.add("desabilitado");btn.classList.remove("ativo");}
+}
+function tentarEnviar(){
+  if(enviado)return;
+  const faltam=SIM.map((_,i)=>respondida(i)?null:i).filter(x=>x!==null);
+  if(faltam.length>0){document.getElementById("aviso").classList.add("show");
+    faltam.forEach(i=>{const c=document.getElementById("q-"+i);c.classList.add("faltando");setTimeout(()=>c.classList.remove("faltando"),600);});
+    document.getElementById("q-"+faltam[0]).scrollIntoView({behavior:"smooth",block:"center"});return;}
+  document.getElementById("aviso").classList.remove("show");enviado=true;
+  let ac=0;SIM.forEach((_,qi)=>{if(acertou(qi))ac++;});
+  codigoGerado=localStorage.getItem(CK);
+  if(!codigoGerado||!codigoGerado.startsWith("SIM-"+String(ac).padStart(2,"0"))){codigoGerado=gerarCodigo(ac);localStorage.setItem(CK,codigoGerado);}
+  const total=SIM.length,pct=Math.round(ac/total*100);let emo,tit,msg;
+  if(ac===total){emo="🏆";tit="PERFECT!";msg="Acertou tudo! Pronta para a prova de verdade!";}
+  else if(pct>=73){emo="🎉";tit="Great job!";msg=ac+" de "+total+" — ótimo! Revise os erros no gabarito.";}
+  else if(pct>=53){emo="🙂";tit="Good!";msg=ac+" de "+total+" — bom caminho! Volte aos temas que errou.";}
+  else{emo="💪";tit="Keep going!";msg=ac+" de "+total+" — releia o resumo e tente de novo!";}
+  document.getElementById("resEmo").textContent=emo;document.getElementById("resTit").textContent=tit;
+  document.getElementById("resNota").textContent=ac+"/"+total;document.getElementById("resMsg").textContent=msg;
+  document.getElementById("resCod").textContent=codigoGerado;document.getElementById("overlay").classList.add("visivel");
+  document.getElementById("resBarra").classList.add("visivel");document.getElementById("rbNota").textContent=ac+"/"+total;document.getElementById("rbCodigo").textContent=codigoGerado;
+  const btn=document.getElementById("btnEnviar");btn.classList.remove("ativo");btn.classList.add("desabilitado");btn.textContent="Simulado enviado";
+  document.getElementById("gabSection").style.display="block";aplicarBloqueio();salvar();
+}
+function aplicarBloqueio(){
+  SIM.forEach((it,qi)=>{
+    const card=document.getElementById("q-"+qi);if(!card)return;card.classList.add("bloqueada");
+    const ok=acertou(qi);
+    if(it.tipo==='mc'){card.querySelectorAll(".opcao").forEach((el)=>{el.classList.remove("selecionada");const t=el.querySelector("span:last-child").textContent;
+      if(t===it.correta)el.classList.add("resposta-certa");if(respostas[qi]===t)el.classList.add(t===it.correta?"correta":"errada");});}
+    if(it.tipo==='fill'){const el=document.getElementById("fill-"+qi);if(el){el.classList.add(ok?"ok-c":"no-c");}}
+    const fb=card.querySelector(".feedback");fb.classList.add("show",ok?"acertou":"errou");
+    let sua="";
+    if(it.tipo==='fill')sua=respostas[qi]||"(vazio)";
+    if(it.tipo==='reorder'&&Array.isArray(respostas[qi]))sua=respostas[qi].map(k=>RBANK[qi][k].w).join(" ");
+    if(it.tipo==='mc')sua=respostas[qi]||"(vazio)";
+    let certa="";
+    if(it.tipo==='mc')certa=it.correta;if(it.tipo==='fill')certa=it.correta;if(it.tipo==='reorder')certa=it.palavras.join(" ");
+    if(ok){fb.innerHTML=`<div class="ft">✅ Correct!</div>${it.exp}`;}
+    else{let extra="";if(it.tipo==='mc'&&it.erradas){extra='<div class="erradas">'+Object.entries(it.erradas).map(([t,e])=>`<p><b>${t}:</b> ${e}</p>`).join("")+'</div>';}
+      fb.innerHTML=`<div class="ft">❌ Incorreto</div><div style="margin-bottom:3px">Sua resposta: <em>${sua}</em></div><div><b>Correta: ${certa}</b></div><div style="margin-top:5px">${it.exp}</div>${extra}`;}
+  });
+}
+function fecharResultado(){document.getElementById("overlay").classList.remove("visivel");document.getElementById("gabSection").scrollIntoView({behavior:"smooth"});}
+function liberarGabarito(){
+  const dig=document.getElementById("codigoInput").value.trim().toUpperCase();
+  const correto=(localStorage.getItem(CK)||codigoGerado||"").toUpperCase();
+  if(!correto||dig!==correto){document.getElementById("codigoErro").classList.add("show");return;}
+  document.getElementById("codigoErro").classList.remove("show");
+  document.getElementById("rbStatus").className="rb-status liberado";document.getElementById("rbStatus").textContent="Gabarito liberado";
+  document.getElementById("gabLista").style.display="block";let html="";
+  SIM.forEach((it,qi)=>{
+    const ok=acertou(qi);let sua="",certa="";
+    if(it.tipo==='mc'){sua=respostas[qi]||"(vazio)";certa=it.correta;}
+    if(it.tipo==='fill'){sua=respostas[qi]||"(vazio)";certa=it.correta;}
+    if(it.tipo==='reorder'){sua=Array.isArray(respostas[qi])?respostas[qi].map(k=>RBANK[qi][k].w).join(" "):"(vazio)";certa=it.palavras.join(" ");}
+    let erradasHTML="";if(it.tipo==='mc'&&it.erradas){erradasHTML=Object.entries(it.erradas).map(([t,e])=>`<div class="gab-errada"><b>${t}</b> — ${e}</div>`).join("");}
+    html+=`<div class="gab-item"><div class="gab-q">${qi+1}. [${BADGE[it.tipo][1]}] ${it.q} ${ok?'✅':'❌'}</div>
+    ${!ok?`<div style="font-size:12px;color:#ffb3c0;margin-bottom:4px">Sua resposta: <em>${sua}</em></div>`:''}
+    <div class="gab-correta">✅ Correta: ${certa}</div><div class="gab-exp">${it.exp}</div>${erradasHTML}</div>`;
+  });
+  document.getElementById("gabLista").innerHTML=html;
+}
+function salvar(){const d={respostas,enviado,codigo:codigoGerado,ts:Date.now()};try{localStorage.setItem(SK,JSON.stringify(d));const dt=new Date();document.getElementById("saveInfo").textContent="💾 Salvo às "+dt.toLocaleTimeString('pt-BR').slice(0,5);}catch(e){}}
+function carregar(){try{const d=JSON.parse(localStorage.getItem(SK)||"null");if(d){respostas=d.respostas||{};enviado=d.enviado||false;codigoGerado=d.codigo||"";
+  if(d.ts){const dt=new Date(d.ts);document.getElementById("saveInfo").textContent="💾 Último acesso: "+dt.toLocaleString('pt-BR').slice(0,17);}
+  if(enviado){document.getElementById("gabSection").style.display="block";let ac=0;SIM.forEach((_,i)=>{if(acertou(i))ac++;});
+    document.getElementById("resBarra").classList.add("visivel");document.getElementById("rbNota").textContent=ac+"/"+SIM.length;document.getElementById("rbCodigo").textContent=codigoGerado;
+    const btn=document.getElementById("btnEnviar");btn.classList.add("desabilitado");btn.textContent="Simulado enviado";}}}catch(e){}}
+function exportar(){const blob=new Blob([JSON.stringify({respostas,enviado,codigo:codigoGerado},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="simulado_ingles_u7_progresso.json";a.click();toast("Progresso exportado!");}
+function importar(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{try{const d=JSON.parse(e.target.result);respostas=d.respostas||{};enviado=d.enviado||false;codigoGerado=d.codigo||"";if(codigoGerado)localStorage.setItem(CK,codigoGerado);salvar();render();toast("Progresso importado!");}catch(x){toast("Arquivo inválido.");}};r.readAsText(f);}
+function pedirZerar(){document.getElementById("overlayZ").classList.add("visivel");}
+function fecharZ(){document.getElementById("overlayZ").classList.remove("visivel");}
+function zerar(){localStorage.removeItem(SK);localStorage.removeItem(CK);respostas={};enviado=false;codigoGerado="";document.getElementById("gabSection").style.display="none";document.getElementById("resBarra").classList.remove("visivel");const btn=document.getElementById("btnEnviar");btn.textContent="Enviar Simulado";fecharZ();render();window.scrollTo(0,0);toast("Simulado zerado.");}
+carregar();render();
+</script>
+</body>
+</html>
